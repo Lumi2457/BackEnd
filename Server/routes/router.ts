@@ -28,7 +28,6 @@ let socies: Array<Socie> = [
         nick: 'Lumi',
         nacimiento: 1999,
     }
-
 ];
 
 router.get('/socies', (req: Request, res: Response) => {
@@ -58,21 +57,21 @@ router.get('/cursos', (req: Request, res: Response) => {
         {
             "titulo": "Diseño de imagen y sonido",
             "color": "brown",
-            capacidad: 20,
+            capacidad: 25,
             horas_semanales: 8,
             dias: "Martes y Jueves"       
         },
         {
             "titulo": "Podcast",
             "color": "blue",
-            capacidad: 20,
+            capacidad: 25,
             horas_semanales: 8,
             dias: "Martes y Viernes"       
         },
         {
             "titulo": "UX Experience",
             "color": "red",
-            capacidad: 20,
+            capacidad: 25,
             horas_semanales: 9, 
             dias: "Miercoles y Viernes"      
         }
