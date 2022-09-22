@@ -21,6 +21,12 @@ let socies: Array<Socie> = [
         apellido: 'Maza',
         nick: 'J0hny',
         nacimiento: 2001,
+    },
+    {
+        nombre: 'Ludmila',
+        apellido: 'Saba',
+        nick: 'Lumi',
+        nacimiento: 1999,
     }
 
 ];
@@ -51,10 +57,30 @@ router.get('/cursos', (req: Request, res: Response) => {
     let curso:Array<Curso> = [
         {
             "titulo": "Diseño de imagen y sonido",
-            "color": "brown"
+            "color": "brown",
+            capacidad: 20,
+            horas_semanales: 8,
+            dias: "Martes y Jueves"       
+        },
+        {
+            "titulo": "Podcast",
+            "color": "blue",
+            capacidad: 20,
+            horas_semanales: 8,
+            dias: "Martes y Viernes"       
+        },
+        {
+            "titulo": "UX Experience",
+            "color": "red",
+            capacidad: 20,
+            horas_semanales: 9, 
+            dias: "Miercoles y Viernes"      
         }
-    ]
-
+    ];
+    res.json({  
+        ok: true,
+        cursos: curso
+    });
 });
 
 router.get('/socie/:nick', (req: Request, res: Response) => {
