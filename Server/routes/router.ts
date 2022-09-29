@@ -2,11 +2,15 @@ import { Router, Request, Response, request, response } from "express";
 //Models
 import { Socie } from "../models/socie.model";
 import { Curso } from "../models/curso.model";
+import { Docente } from "../models/docente.model";
+import { CursoporDocente } from "../models/cursoxdocente.model";
 // Data
 import { socies } from "../data/socies.data";
 import { cursos } from "../data/curso.data";
 import { docentes } from "../data/docente.data";
-import { Docente } from "../models/docente.model";
+import { cursoxdocente } from "../data/cursoxdocente.data";
+
+
 
 export const router = Router();
 
@@ -46,6 +50,8 @@ router.get('/docentes', (req: Request, res: Response) => {
     });
 });  
 
+
+
 router.get('/socie/:nick', (req: Request, res: Response) => {
     let ficha:Socie= {nombre: "", apellido: "", nick:"", nacimiento:0};
     let flag:boolean=false;
@@ -63,7 +69,7 @@ router.get('/socie/:nick', (req: Request, res: Response) => {
 });
 
 router.get('/docente/:nick', (req: Request, res: Response) => {
-    let ficha:Docente= {nombre: "", apellido: "", nick:""};
+    let ficha:Docente= {id: 0, nombre: "", apellido: "", nick:""};
     let flag:boolean=false;
 
     docentes.forEach(docente => {
@@ -78,6 +84,62 @@ router.get('/docente/:nick', (req: Request, res: Response) => {
     });
 });
 
-router.get('/rickandmorty', (req:Request, res:Response) => {
+function agregarCurso(fuente: Curso): CursoporDocente{
+    if (fuente.profesor){
+        return {docente: fuente.profesor.nombre, id_docente: fuente.profesor.id, cursos:1 }
+    }
+    else {
+        return {docente: "", id_docente: -1, cursos:1 }
+    }
+}
 
-})
+function acumularCurso(fuente: Array <CursoporDocente>, id_docente:number){
+    fuente.forEach(docente => {
+        if (docente.id_docente == id_docente){
+            docente.cursos += 1;
+        }
+    });
+}
+
+router.get('/cursosxdocente', (req: Request, res:Response) => {
+    let resp: Array<CursoporDocente> =[];
+
+    // Recorro cada uno de los cursos
+    cursos.forEach(curso =>{
+        // Asumo que no este curso tiene un docente que no está repetido
+        let repetido = false;
+        // Variable temporal para guardar el nombre del docente
+        let tmp_nombreDocente: string = "";
+        // Variable temporal para guardar el id del docente
+        let tmp_idDocente: number = -1;
+        // Recorro la respuesta para ver si ya la escribí al docente en el array
+        resp.forEach(docente=>{
+            if (docente.id_docente === curso.profesor?.id){
+                // Establezco flag
+                repetido = true;
+                // Guardo en variable temporal
+                tmp_nombreDocente = docente.docente;
+                // Guardo en variable temporal
+                tmp_idDocente = docente.id_docente;
+            }
+        });
+        // Si está repetido incremento, sino agrego
+        if (!repetido) {
+            if (curso.profesor){
+                // If narrowing
+                resp.push(agregarCurso(curso));
+            }
+        }
+        else {
+            acumularCurso(resp, tmp_idDocente);
+        }
+
+        res.json({
+            ok: true,
+            data: resp
+        })
+
+        
+    });
+});
+console.log(resp)
