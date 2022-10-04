@@ -24,4 +24,11 @@ export const cursos: Array<Curso> = [
         horas_semanales: 12,
         profesor: D.docentes[3]
     },
+    {
+        titulo: "Fotografia",
+        color: "brown",
+        capacidad: 10,
+        horas_semanales: 12,
+        profesor: D.docentes[2]
+    },
 ];

@@ -10,6 +10,11 @@
 }
 
 
+main{
+  background-color:#ccc;
+}
+
+
 header{
     background: #753c9d;
 }
@@ -57,7 +62,7 @@ footer{
     padding: 2em;
     height: 100%;
     width: 100%;
-    background: url("/Img/fondo.jpg") no-repeat center center;
+    background: url("../Img/fondo.jpg") no-repeat center center;
     background-size: cover;
     text-shadow: black 0.1em 0.1em 0.2em
 }
@@ -74,21 +79,27 @@ footer{
 
 .centro{
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap ;
 }
+
+.textos{
+  justify-items: center;
+  margin-left: 100px;
+}
+
 .texto_1 {
   margin-top: 20px;
   text-align: center;
   height: auto;
-    padding: 2em;
-    width: 75vw;
-    font-size: 1.5em;
-   color: rgb(8, 8, 8);
-   background: #d6b707;
-   border-radius: 0 20px 20px 0;
-   -webkit-border-radius: 0 20px 20px 0;
-   -moz-border-radius: 0 20px 20px 0;
-   max-width: 700px ;
+  padding: 2em;
+  width: 75vw;
+  font-size: 1.5em;
+  color: rgb(8, 8, 8);
+  background: #d6b707;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  max-width: 600px ;
 }
 
 .texto_2 {
@@ -101,14 +112,14 @@ footer{
     font-size: 1.5em;
    color: rgb(8, 8, 8);
    background: #d6b707;
-   border-radius: 0 20px 20px 0;;
-   -webkit-border-radius: 0 20px 20px 0;
-   -moz-border-radius: 0 20px 20px 0;
-   max-width: 700px ;
+   border-radius: 20px;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   max-width: 600px ;
 }
 
 .Parte_Registro{
-  margin: auto;
+ ;
 }
 
 .Boton_registro a{

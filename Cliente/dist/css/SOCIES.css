@@ -9,6 +9,10 @@
   transition: all 0.3s ease;
 }
 
+main{
+  background-color:#764d9f;
+}
+
 
 header{
     background: #753c9d;
@@ -57,7 +61,7 @@ footer{
     padding: 2em;
     height: 100%;
     width: 100%;
-    background: url("/dist/Img/fondo.jpg") no-repeat center center;
+    background: url("../Img/fondo.jpg") no-repeat center center;
     background-size: cover;
     text-shadow: black 0.1em 0.1em 0.2em
 }
@@ -458,7 +462,7 @@ th, tr ,td{
 }
 th{
   text-align: left;
-  color: white;
+  color:#753c9d;
 }
 
 a{

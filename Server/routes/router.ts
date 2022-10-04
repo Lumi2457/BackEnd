@@ -86,12 +86,22 @@ router.get('/docente/:nick', (req: Request, res: Response) => {
 
 function agregarCurso(fuente: Curso): CursoporDocente{
     if (fuente.profesor){
+        return {docente: fuente.profesor.nombre, id_docente: fuente.profesor.id, cursos: fuente.profesor.id }
+    }
+    else {
+        return {docente: "", id_docente: 0, cursos:-1 }
+    }
+}
+
+function sumarCurso(fuente: Curso): CursoporDocente{
+    if (fuente.profesor){
         return {docente: fuente.profesor.nombre, id_docente: fuente.profesor.id, cursos:1 }
     }
     else {
         return {docente: "", id_docente: -1, cursos:1 }
     }
 }
+
 
 function acumularCurso(fuente: Array <CursoporDocente>, id_docente:number){
     fuente.forEach(docente => {
@@ -100,6 +110,8 @@ function acumularCurso(fuente: Array <CursoporDocente>, id_docente:number){
         }
     });
 }
+
+
 
 router.get('/cursosxdocente', (req: Request, res:Response) => {
     let resp: Array<CursoporDocente> =[];
@@ -112,6 +124,8 @@ router.get('/cursosxdocente', (req: Request, res:Response) => {
         let tmp_nombreDocente: string = "";
         // Variable temporal para guardar el id del docente
         let tmp_idDocente: number = -1;
+
+        let numero_cursos: number = 0;
         // Recorro la respuesta para ver si ya la escribí al docente en el array
         resp.forEach(docente=>{
             if (docente.id_docente === curso.profesor?.id){
@@ -131,15 +145,18 @@ router.get('/cursosxdocente', (req: Request, res:Response) => {
             }
         }
         else {
-            acumularCurso(resp, tmp_idDocente);
+            acumularCurso(resp, tmp_idDocente); 
+        }
+
+        if (!repetido){
+            if (curso.profesor){
+                resp.push(sumarCurso(cursos));
+            }
         }
 
         res.json({
             ok: true,
-            data: resp
+            cursoxdocente: resp
         })
-
-        
     });
 });
-console.log(resp)

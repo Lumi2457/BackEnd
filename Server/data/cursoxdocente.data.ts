@@ -4,11 +4,16 @@ export const cursoxdocente: Array<CursoporDocente> = [
     {
         id_docente: 1,
         docente: "Leonardo",
-        cursos: 3,
+        cursos: 1,
     },
     {
         id_docente:2,
         docente: "Sebastian",
-        cursos: 2,
+        cursos: 1,
+    },
+    {
+        id_docente:3,
+        docente: "Marcela",
+        cursos: 1,
     },
 ]
